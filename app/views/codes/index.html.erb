@@ -7,15 +7,15 @@
     <tr>
       <th>ID</th>
       <th>Vended</th>
-      <th>Created At</th>
+      <th>Code Hash</th>
     </tr>
   </thead>
   <tbody>
     <% @codes.each do |code| %>
       <tr>
         <td><%= code.id %></td>
-        <td><%= code.vended ? 'Yes' : 'No' %></td>
-        <td><%= code.created_at %></td>
+        <td><%= code.vended ? 'True' : 'False' %></td>
+        <td><%= code.code_hash %></td>
       </tr>
     <% end %>
   </tbody>

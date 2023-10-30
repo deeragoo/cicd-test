@@ -9,25 +9,19 @@
 # Seed data for the 'codes' table
 num_codes = 100  # Change this to the desired number of codes
 num_codes.times do |i|
-  vended = rand < 0.5
-  created_at = Time.current - (i * 1.day)
-
-  Code.find_or_create_by(created_at: created_at) do |code|
-    code.vended = vended
-  end
+  c = Code.new
+  c.vended = rand < 0.5
+  c.code_hash = SecureRandom.hex(5)
+  c.save
 end
 
 # Seed data for the 'users' table
 num_users = 100  # Change this to the desired number of users
 num_users.times do |i|
-  name = "Random User #{i + 1}"
-  email = "user#{i + 1}@example.com"
-  created_at = Time.current - (i * 1.day)
-
-  User.find_or_create_by(email: email) do |user|
-    user.name = name
-    user.created_at = created_at
-  end
+  u = User.new
+  u.name = "Random User #{i + 1}"
+  u.email = "user#{i + 1}@example.com"
+  u.save
 end
 
 # CREATE TABLE codes (

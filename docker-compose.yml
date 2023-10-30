@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["./bin/wait-for-it.sh", "db:5432", "--", "sh", "-c", "rails s -b 0.0.0.0"]
+    ports:
+      - "3000:3000"  # Map container's port 3000 to host's port 3000
+    volumes:
+      - .:/app  # Mount your Rails app directory into the container
+    depends_on:
+      - db  # Depend on the database service
+  db:
+    image: postgres:13  # Use a PostgreSQL image
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pword3
+      POSTGRES_DB: cicd_test_development
+    ports:
+      - "4321:5432"  # Map container's port 5432 to host's port 5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+volumes:
+  pg_data:

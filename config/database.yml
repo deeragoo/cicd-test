@@ -23,7 +23,12 @@ default: &default
 
 development:
   <<: *default
+  host: cicd-test-db-1  # Use the container name as the host
+  port: 5432             # Use the port where PostgreSQL is mapped in the container
   database: cicd_test_development
+  username: postgres
+  password: pword3
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

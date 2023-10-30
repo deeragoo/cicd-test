@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.force_ssl = true
+  config.force_ssl = false
   # config.ssl_options = {
   #   key: Rails.root.join('localhost.key'),
   #   cert: Rails.root.join('localhost.crt')

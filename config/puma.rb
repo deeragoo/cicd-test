@@ -17,15 +17,15 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 #
 # port ENV.fetch("PORT") { 3000 }
 
-if ENV['RAILS_ENV'] == 'development'
-  ssl_bind '0.0.0.0', '3000', {
-    key: Rails.root.join('localhost.key').to_s,
-    cert: Rails.root.join('localhost.crt').to_s,
-    verify_mode: 'none', # For self-signed certificates, you may need this
-    no_tlsv1: true,      # For self-signed certificates, you may need this
-    ssl_version: :TLSv1_2
-  }
-end
+# if ENV['RAILS_ENV'] == 'development'
+#   ssl_bind '0.0.0.0', '3000', {
+#     key: Rails.root.join('localhost.key').to_s,
+#     cert: Rails.root.join('localhost.crt').to_s,
+#     verify_mode: 'none', # For self-signed certificates, you may need this
+#     no_tlsv1: true,      # For self-signed certificates, you may need this
+#     ssl_version: :TLSv1_2
+#   }
+# end
 
 
 # Specifies the `environment` that Puma will run in.
