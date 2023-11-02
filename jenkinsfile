@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // This stage checks out your source code from your version control system
+                checkout scm
+            }
+        }
+
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    def imageName = "ragoosterman/cicd-test"
+                    def imageTag = "latest"
+                    def dockerfile = "Dockerfile"
+                    def registryUrl = "hub.docker.com"
+
+                    // Build the Docker image
+                    sh "docker build -t ${imageName}:${imageTag} -f ${dockerfile} ."
+
+                    // Log in to the Docker registry
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $registryUrl"
+                    }
+
+                    // Push the Docker image to the registry
+                    sh "docker push ${registryUrl}/${imageName}:${imageTag}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up, if needed
+            sh "docker rmi -f ${imageName}:${imageTag}"
+        }
+    }
+}
