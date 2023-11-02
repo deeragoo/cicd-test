@@ -21,8 +21,11 @@ pipeline {
                     sh "docker build -t ${imageName}:${imageTag} -f ${dockerfile} ."
 
                     // Log in to the Docker registry
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $registryUrl"
+                    withCredentials([usernamePassword(credentialsId: '4b3d77b4-e959-42b4-abb4-dd57e4d357a2', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        echo USERNAME
+                        sh 'echo $USERNAME'
+                        echo "username is: $USERNAME"
+                        sh "docker login -u $USERNAME -p $PASSWORD $registryUrl"
                     }
 
                     // Push the Docker image to the registry
