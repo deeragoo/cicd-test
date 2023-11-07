@@ -18,3 +18,4 @@ jobs:
       run: |
         # Replace this with the actual command or script you want to run
         echo "This is a simple action for pull requests"
+        echo "i changed something here"
