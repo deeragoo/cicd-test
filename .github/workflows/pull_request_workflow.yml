@@ -16,4 +16,4 @@ jobs:
     - name: Run Your Script
       run: |
         echo "u da best"
-        echo "${GITHUB_REF#refs/tags/}"
+        echo ${GITHUB_REF#refs/tags/}
