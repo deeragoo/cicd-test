@@ -1,10 +1,9 @@
-name: Frontend Test Suite
+name: Test Suite
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
+    branches:
+      - *
 
 jobs:
   build:
@@ -16,4 +15,5 @@ jobs:
 
     - name: Run Your Script
       run: |
-        bin/rake
+        echo "u da best"
+        echo "${GITHUB_REF#refs/tags/}"
