@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 
-* Jenkins integration
+* Jenkins integration test
