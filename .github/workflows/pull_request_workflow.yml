@@ -1,21 +1,17 @@
-name: Pull Request
+name: Test Suite
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
+    branches:
+      - "*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check Out Code
-      uses: actions/checkout@v2
-
-    - name: Run Your Script
-      run: |
-        # Replace this with the actual command or script you want to run
-        echo "This is a simple action for pull requests"
-        echo "i changed something here"
+      - uses: actions/checkout@v2
+      - name: Check Out Code
+        run: |
+          echo "u da best"
+          echo ${GITHUB_REF#refs/tags/}
